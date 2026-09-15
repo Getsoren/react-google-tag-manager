@@ -1,6 +1,8 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
+
+## [1.4.8](https://github.com/getsoren/react-google-tag-manager/compare/v1.4.6...v1.4.8) (2026-09-15)
 
 ### [1.4.6](https://github.com/Tracktor/react-google-tag-manager/compare/v1.4.5...v1.4.6) (2026-03-26)
 
