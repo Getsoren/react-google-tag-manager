@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 import dts from "unplugin-dts/vite";
 import { defineConfig, UserConfig as UserConfigVite } from "vite";
 import { UserConfig as InlineConfigVitest } from "vitest/config";
-import { dependencies, name, peerDependencies } from "./package.json";
+import pkg from "./package.json" with { type: "json" };
 
 type UserConfig = UserConfigVite & {
   test: InlineConfigVitest["test"];
@@ -12,12 +12,12 @@ type UserConfig = UserConfigVite & {
 const config: UserConfig = {
   build: {
     lib: {
-      entry: resolve(__dirname, "src/main.ts"),
+      entry: resolve(import.meta.dirname, "src/main.ts"),
       fileName: "[name]",
-      name,
+      name: pkg.name,
     },
     rolldownOptions: {
-      external: [...Object.keys(dependencies), ...Object.keys(peerDependencies), "react/jsx-runtime", "react/jsx-dev-runtime"],
+      external: [...Object.keys(pkg.dependencies), ...Object.keys(pkg.peerDependencies), "react/jsx-runtime", "react/jsx-dev-runtime"],
       output: {
         globals: {
           "@getsoren/react-utils": "reactUtils",
@@ -30,8 +30,8 @@ const config: UserConfig = {
   publicDir: false,
   resolve: {
     alias: [
-      { find: "@", replacement: resolve(__dirname, "src") },
-      { find: "~", replacement: resolve(__dirname) },
+      { find: "@", replacement: resolve(import.meta.dirname, "src") },
+      { find: "~", replacement: resolve(import.meta.dirname) },
     ],
   },
   test: {
